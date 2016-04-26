@@ -1,0 +1,23 @@
+{
+  "name": "csv-generator-ebay",
+  "version": "1.0.0",
+  "description": "generate csv format for eBay File Exchange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceznik/CSV-Generator-eBay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ceznik/CSV-Generator-eBay/issues"
+  },
+  "homepage": "https://github.com/ceznik/CSV-Generator-eBay#readme",
+  "dependencies": {
+    "csv": "^0.4.6",
+    "ebay-api": "^1.13.0"
+  }
+}
