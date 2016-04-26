@@ -1,0 +1,441 @@
+{
+  "AddFixedPriceItemRequest": {
+    "-xmlns": "urn:ebay:apis:eBLBaseComponents",
+    "Item": {
+      "#text": " ItemType
+    ",
+      "ApplicationData": " string ",
+      "AutoPay": " boolean ",
+      "BestOfferDetails": {
+        "#text": " BestOfferDetailsType
+      ",
+        "BestOfferEnabled": " boolean "
+      },
+      "BuyerRequirementDetails": {
+        "#text": " BuyerRequirementDetailsType
+      ",
+        "LinkedPayPalAccount": " boolean ",
+        "MaximumBuyerPolicyViolations": {
+          "#text": " MaximumBuyerPolicyViolationsType
+        ",
+          "Count": " int ",
+          "Period": " PeriodCodeType "
+        },
+        "MaximumItemRequirements": {
+          "#text": " MaximumItemRequirementsType
+        ",
+          "MaximumItemCount": " int ",
+          "MinimumFeedbackScore": " int "
+        },
+        "MaximumUnpaidItemStrikesInfo": {
+          "#text": " MaximumUnpaidItemStrikesInfoType
+        ",
+          "Count": " int ",
+          "Period": " PeriodCodeType "
+        },
+        "MinimumFeedbackScore": " int ",
+        "ShipToRegistrationCountry": " boolean ",
+        "VerifiedUserRequirements": {
+          "#text": " VerifiedUserRequirementsType
+        ",
+          "MinimumFeedbackScore": " int ",
+          "VerifiedUser": " boolean "
+        },
+        "ZeroFeedbackScore": " boolean "
+      },
+      "CategoryBasedAttributesPrefill": " boolean ",
+      "CategoryMappingAllowed": " boolean ",
+      "Charity": {
+        "#text": " CharityType
+      ",
+        "CharityID": " string ",
+        "CharityNumber": " int ",
+        "DonationPercent": " float "
+      },
+      "ConditionDescription": " string ",
+      "ConditionID": " int ",
+      "Country": " CountryCodeType ",
+      "CrossBorderTrade": " string ",
+      "Currency": " CurrencyCodeType ",
+      "Description": " string ",
+      "DigitalGoodInfo": {
+        "#text": " DigitalGoodInfoType
+      ",
+        "DigitalDelivery": " boolean "
+      },
+      "DisableBuyerRequirements": " boolean ",
+      "DiscountPriceInfo": {
+        "#text": " DiscountPriceInfoType
+      ",
+        "MadeForOutletComparisonPrice": " AmountType (double) ",
+        "MinimumAdvertisedPrice": " AmountType (double) ",
+        "MinimumAdvertisedPriceExposure": " MinimumAdvertisedPriceExposureCodeType ",
+        "OriginalRetailPrice": " AmountType (double) ",
+        "SoldOffeBay": " boolean ",
+        "SoldOneBay": " boolean "
+      },
+      "DispatchTimeMax": " int ",
+      "eBayNowEligible": " boolean ",
+      "eBayPlus": " boolean ",
+      "GiftIcon": " int ",
+      "GiftServices": " GiftServicesCodeType ",
+      "HitCounter": " HitCounterCodeType ",
+      "IncludeRecommendations": " boolean ",
+      "InventoryTrackingMethod": " InventoryTrackingMethodCodeType ",
+      "ItemCompatibilityList": {
+        "#text": " ItemCompatibilityListType
+      ",
+        "Compatibility": {
+          "#text": " ItemCompatibilityType
+        ",
+          "CompatibilityNotes": " string ",
+          "NameValueList": {
+            "#text": " NameValueListType
+          ",
+            "Name": " string ",
+            "Value": " string "
+          }
+        }
+      },
+      "ItemSpecifics": {
+        "#text": " NameValueListArrayType
+      ",
+        "NameValueList": {
+          "#text": " NameValueListType
+        ",
+          "Name": " string ",
+          "Value": " string "
+        }
+      },
+      "ListingCheckoutRedirectPreference": {
+        "#text": " ListingCheckoutRedirectPreferenceType
+      ",
+        "ProStoresStoreName": " string ",
+        "SellerThirdPartyUsername": " string "
+      },
+      "ListingDesigner": {
+        "#text": " ListingDesignerType
+      ",
+        "LayoutID": " int ",
+        "OptimalPictureSize": " boolean ",
+        "ThemeID": " int "
+      },
+      "ListingDetails": {
+        "#text": " ListingDetailsType
+      ",
+        "BestOfferAutoAcceptPrice": " AmountType (double) ",
+        "LocalListingDistance": " string ",
+        "MinimumBestOfferPrice": " AmountType (double) "
+      },
+      "ListingDuration": " token ",
+      "ListingEnhancement": " ListingEnhancementsCodeType ",
+      "ListingType": " ListingTypeCodeType ",
+      "Location": " string ",
+      "PaymentMethods": " BuyerPaymentMethodCodeType ",
+      "PayPalEmailAddress": " string ",
+      "PickupInStoreDetails": {
+        "#text": " PickupInStoreDetailsType
+      ",
+        "EligibleForPickupDropOff": " boolean ",
+        "EligibleForPickupInStore": " boolean "
+      },
+      "PictureDetails": {
+        "#text": " PictureDetailsType
+      ",
+        "GalleryDuration": " token ",
+        "GalleryType": " GalleryTypeCodeType ",
+        "GalleryURL": " anyURI ",
+        "PhotoDisplay": " PhotoDisplayCodeType ",
+        "PictureSource": " PictureSourceCodeType ",
+        "PictureURL": " anyURI "
+      },
+      "PostalCode": " string ",
+      "PostCheckoutExperienceEnabled": " boolean ",
+      "PrimaryCategory": {
+        "#text": " CategoryType
+      ",
+        "CategoryID": " string "
+      },
+      "PrivateListing": " boolean ",
+      "PrivateNotes": " string ",
+      "ProductListingDetails": {
+        "#text": " ProductListingDetailsType
+      ",
+        "BrandMPN": {
+          "#text": " BrandMPNType
+        ",
+          "Brand": " string ",
+          "MPN": " string "
+        },
+        "EAN": " string ",
+        "IncludeeBayProductDetails": " boolean ",
+        "IncludeStockPhotoURL": " boolean ",
+        "ISBN": " string ",
+        "ProductID": " string ",
+        "ProductReferenceID": " string ",
+        "ReturnSearchResultOnDuplicates": " boolean ",
+        "TicketListingDetails": {
+          "#text": " TicketListingDetailsType
+        ",
+          "EventTitle": " string ",
+          "PrintedDate": " string ",
+          "PrintedTime": " string ",
+          "Venue": " string "
+        },
+        "UPC": " string ",
+        "UseFirstProduct": " boolean ",
+        "UseStockPhotoURLAsGallery": " boolean "
+      },
+      "Quantity": " int ",
+      "QuantityInfo": {
+        "#text": " QuantityInfoType
+      ",
+        "MinimumRemnantSet": " int "
+      },
+      "QuantityRestrictionPerBuyer": {
+        "#text": " QuantityRestrictionPerBuyerInfoType
+      ",
+        "MaximumQuantity": " int "
+      },
+      "ReturnPolicy": {
+        "#text": " ReturnPolicyType
+      ",
+        "Description": " string ",
+        "EAN": " string ",
+        "ExtendedHolidayReturns": " boolean ",
+        "RefundOption": " token ",
+        "RestockingFeeValueOption": " token ",
+        "ReturnsAcceptedOption": " token ",
+        "ReturnsWithinOption": " token ",
+        "ShippingCostPaidByOption": " token ",
+        "WarrantyDurationOption": " token ",
+        "WarrantyOfferedOption": " token ",
+        "WarrantyTypeOption": " token "
+      },
+      "ScheduleTime": " dateTime ",
+      "SecondaryCategory": {
+        "#text": " CategoryType
+      ",
+        "CategoryID": " string "
+      },
+      "SellerProfiles": {
+        "#text": " SellerProfilesType
+      ",
+        "SellerPaymentProfile": {
+          "#text": " SellerPaymentProfileType
+        ",
+          "PaymentProfileID": " long ",
+          "PaymentProfileName": " string "
+        },
+        "SellerReturnProfile": {
+          "#text": " SellerReturnProfileType
+        ",
+          "ReturnProfileID": " long ",
+          "ReturnProfileName": " string "
+        },
+        "SellerShippingProfile": {
+          "#text": " SellerShippingProfileType
+        ",
+          "ShippingProfileID": " long ",
+          "ShippingProfileName": " string "
+        }
+      },
+      "SellerProvidedTitle": " string ",
+      "ShippingDetails": {
+        "#text": " ShippingDetailsType
+      ",
+        "CalculatedShippingRate": {
+          "#text": " CalculatedShippingRateType
+        ",
+          "InternationalPackagingHandlingCosts": " AmountType (double) ",
+          "MeasurementUnit": " MeasurementSystemCodeType ",
+          "OriginatingPostalCode": " string ",
+          "PackageDepth": " MeasureType (decimal) ",
+          "PackageLength": " MeasureType (decimal) ",
+          "PackageWidth": " MeasureType (decimal) ",
+          "PackagingHandlingCosts": " AmountType (double) ",
+          "ShippingIrregular": " boolean ",
+          "ShippingPackage": " ShippingPackageCodeType ",
+          "WeightMajor": " MeasureType (decimal) ",
+          "WeightMinor": " MeasureType (decimal) "
+        },
+        "CODCost": " AmountType (double) ",
+        "ExcludeShipToLocation": " string ",
+        "GlobalShipping": " boolean ",
+        "InsuranceDetails": {
+          "#text": " InsuranceDetailsType
+        ",
+          "InsuranceFee": " AmountType (double) ",
+          "InsuranceOption": " InsuranceOptionCodeType "
+        },
+        "InsuranceFee": " AmountType (double) ",
+        "InsuranceOption": " InsuranceOptionCodeType ",
+        "InternationalInsuranceDetails": {
+          "#text": " InsuranceDetailsType
+        ",
+          "InsuranceFee": " AmountType (double) ",
+          "InsuranceOption": " InsuranceOptionCodeType "
+        },
+        "InternationalPromotionalShippingDiscount": " boolean ",
+        "InternationalShippingDiscountProfileID": " string ",
+        "InternationalShippingServiceOption": {
+          "#text": " InternationalShippingServiceOptionsType
+        ",
+          "ShippingService": " token ",
+          "ShippingServiceAdditionalCost": " AmountType (double) ",
+          "ShippingServiceCost": " AmountType (double) ",
+          "ShippingServicePriority": " int ",
+          "ShipToLocation": " string "
+        },
+        "PaymentInstructions": " string ",
+        "PromotionalShippingDiscount": " boolean ",
+        "RateTableDetails": {
+          "#text": " RateTableDetailsType
+        ",
+          "DomesticRateTable": " string ",
+          "InternationalRateTable": " string "
+        },
+        "SalesTax": {
+          "#text": " SalesTaxType
+        ",
+          "SalesTaxPercent": " float ",
+          "SalesTaxState": " string ",
+          "ShippingIncludedInTax": " boolean "
+        },
+        "ShippingDiscountProfileID": " string ",
+        "ShippingServiceOptions": {
+          "#text": " ShippingServiceOptionsType
+        ",
+          "FreeShipping": " boolean ",
+          "ShippingService": " token ",
+          "ShippingServiceAdditionalCost": " AmountType (double) ",
+          "ShippingServiceCost": " AmountType (double) ",
+          "ShippingServicePriority": " int ",
+          "ShippingSurcharge": " AmountType (double) "
+        },
+        "ShippingType": " ShippingTypeCodeType "
+      },
+      "ShippingPackageDetails": {
+        "#text": " ShipPackageDetailsType
+      ",
+        "MeasurementUnit": " MeasurementSystemCodeType ",
+        "PackageDepth": " MeasureType (decimal) ",
+        "PackageLength": " MeasureType (decimal) ",
+        "PackageWidth": " MeasureType (decimal) ",
+        "ShippingIrregular": " boolean ",
+        "ShippingPackage": " ShippingPackageCodeType ",
+        "WeightMajor": " MeasureType (decimal) ",
+        "WeightMinor": " MeasureType (decimal) "
+      },
+      "ShippingServiceCostOverrideList": {
+        "#text": " ShippingServiceCostOverrideListType
+      ",
+        "ShippingServiceCostOverride": {
+          "#text": " ShippingServiceCostOverrideType
+        ",
+          "ShippingServiceAdditionalCost": " AmountType (double) ",
+          "ShippingServiceCost": " AmountType (double) ",
+          "ShippingServicePriority": " int ",
+          "ShippingServiceType": " ShippingServiceType ",
+          "ShippingSurcharge": " AmountType (double) "
+        }
+      },
+      "ShippingTermsInDescription": " boolean ",
+      "ShipToLocations": " string ",
+      "Site": " SiteCodeType ",
+      "SKU": " SKUType (string) ",
+      "SkypeContactOption": " SkypeContactOptionCodeType ",
+      "SkypeEnabled": " boolean ",
+      "SkypeID": " string ",
+      "StartPrice": " AmountType (double) ",
+      "Storefront": {
+        "#text": " StorefrontType
+      ",
+        "StoreCategory2ID": " long ",
+        "StoreCategory2Name": " string ",
+        "StoreCategoryID": " long ",
+        "StoreCategoryName": " string "
+      },
+      "SubTitle": " string ",
+      "TaxCategory": " string ",
+      "ThirdPartyCheckout": " boolean ",
+      "ThirdPartyCheckoutIntegration": " boolean ",
+      "Title": " string ",
+      "UseRecommendedProduct": " boolean ",
+      "UseTaxTable": " boolean ",
+      "UUID": " UUIDType (string) ",
+      "Variations": {
+        "#text": " VariationsType
+      ",
+        "Pictures": {
+          "#text": " PicturesType
+        ",
+          "VariationSpecificName": " string ",
+          "VariationSpecificPictureSet": {
+            "#text": " VariationSpecificPictureSetType
+          ",
+            "PictureURL": " anyURI ",
+            "VariationSpecificValue": " string "
+          }
+        },
+        "Variation": {
+          "#text": " VariationType
+        ",
+          "DiscountPriceInfo": {
+            "#text": " DiscountPriceInfoType
+          ",
+            "MadeForOutletComparisonPrice": " AmountType (double) ",
+            "MinimumAdvertisedPrice": " AmountType (double) ",
+            "MinimumAdvertisedPriceExposure": " MinimumAdvertisedPriceExposureCodeType ",
+            "OriginalRetailPrice": " AmountType (double) ",
+            "SoldOffeBay": " boolean ",
+            "SoldOneBay": " boolean "
+          },
+          "Quantity": " int ",
+          "SKU": " SKUType (string) ",
+          "StartPrice": " AmountType (double) ",
+          "VariationProductListingDetails": {
+            "#text": " VariationProductListingDetailsType
+          ",
+            "EAN": " string ",
+            "ISBN": " string ",
+            "UPC": " string "
+          },
+          "VariationSpecifics": {
+            "#text": " NameValueListArrayType
+          ",
+            "NameValueList": {
+              "#text": " NameValueListType
+            ",
+              "Name": " string ",
+              "Value": " string "
+            }
+          }
+        },
+        "VariationSpecificsSet": {
+          "#text": " NameValueListArrayType
+        ",
+          "NameValueList": {
+            "#text": " NameValueListType
+          ",
+            "Name": " string ",
+            "Value": " string "
+          }
+        }
+      },
+      "VATDetails": {
+        "#text": " VATDetailsType
+      ",
+        "BusinessSeller": " boolean ",
+        "RestrictedToBusiness": " boolean ",
+        "VATPercent": " float "
+      },
+      "VIN": " string ",
+      "VRM": " string "
+    },
+    "ErrorLanguage": " string ",
+    "MessageID": " string ",
+    "Version": " string ",
+    "WarningLevel": " WarningLevelCodeType "
+  }
+}
