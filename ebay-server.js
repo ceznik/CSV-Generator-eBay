@@ -21,6 +21,13 @@ var prKeys = require('./pr_keys.js');
 var app = express();
 var PORT = process.env.PORT || 8080;
 
+// LISTENER
+app.listen(PORT, function(){
+	console.log("App listening on PORT: " + PORT);
+});
+
+
+
 // use for downloading files from File Exchange
 var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDownload';
 
@@ -31,10 +38,12 @@ var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDo
 // 	console.log('File Exchange Token: ' + data);
 // });
 
-var table = new Table({
-	head: ['Ebay Item ID', 'Title', 'Price'],
-	colWidths: [15, 80, 10]
-});
+
+// use for displaying query data to the console
+// var table = new Table({
+// 	head: ['Ebay Item ID', 'Title', 'Price'],
+// 	colWidths: [15, 80, 10]
+// });
 
 
 
@@ -49,15 +58,21 @@ var params = {
   },
 
   itemFilter: [
-    {name: 'Seller', value: 'ultrarevparts'},
-    {name: 'MaxPrice', value: '1000.00'}
+    {name: 'Seller', value: 'ultrarevparts'}
   ],
 
   primaryCategory: [
     {name: 'categoryName', value: process.argv[2]}
   ]
 };
+app.use(function(req, res){
+	res.sendFile(path.join(__dirname + '/compsearch.html'));
+});
 
+
+app.post('/', function(req, res){
+	console.log(req.body);
+})
 ebay.xmlRequest({
     serviceName: 'Finding',
     opType: 'findItemsByKeywords',
@@ -71,13 +86,13 @@ ebay.xmlRequest({
 
     var items = itemsResponse.searchResult.item;
 
-    console.log('Found', items.length, 'items');
+    console.log(colors.magenta.bold('Found', items.length, 'items'));
     //console.log(items);
     
     for (var i = 0; i < items.length; i++) {
-      table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
       //console.log(items[i].shippingInfo.shippingServiceCost);
     }
-    console.log(colors.green(table.toString()));
+    //console.log(colors.green(table.toString()));
   }
 );
