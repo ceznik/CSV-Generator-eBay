@@ -26,7 +26,10 @@ app.listen(PORT, function(){
 	console.log("App listening on PORT: " + PORT);
 });
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 // use for downloading files from File Exchange
 var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDownload';
@@ -65,14 +68,16 @@ var params = {
     {name: 'categoryName', value: process.argv[2]}
   ]
 };
-app.use(function(req, res){
+app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/compsearch.html'));
 });
 
 
 app.post('/', function(req, res){
 	console.log(req.body);
-})
+});
+
+
 ebay.xmlRequest({
     serviceName: 'Finding',
     opType: 'findItemsByKeywords',

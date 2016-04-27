@@ -37,7 +37,7 @@
 			  <div class="panel-heading"><strong>Ultrarev Part Search</strong></div>
 			  	<div class="input-group">
 				  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-				  <input type="text" class="form-control" placeholder="Part Number" aria-describedby="basic-addon1" id="ultrarev-search-criteria"><button type="button" class="btn btn-primary" id="ultrarev-search-btn">Search Part</button>
+				  <input type="text" class="form-control" placeholder="Part Number" aria-describedby="basic-addon1" id="ultrarev-search-criteria" name="queryPart"><button type="button" class="btn btn-primary" id="ultrarev-search-btn">Search Part</button>
 				</div>
 
 			  <div class="panel-body">
@@ -83,8 +83,8 @@
 
 		var currentURL = window.location.origin;
 
-		$.post(currentURL + "/", ultrarevSearch, function(data){
-			console.log(data);
+		$.post(currentURL, ultrarevSearch, function(data){
+			console.log(ultrarevSearch);
 		})
 	});
 </script>
