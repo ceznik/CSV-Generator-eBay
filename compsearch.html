@@ -43,7 +43,7 @@
 				</div>
 
 			  <div class="panel-body">
-			    <table id="ultrarevPartTable" class="display" cellspacing="0" width="100%">
+			    <table id="ultraTable" class="display" cellspacing="0" width="100%">
 			    	<thead>
 			    		<tr>
 			    			<th>Item Id</th>
@@ -85,9 +85,12 @@
 
 		var currentURL = window.location.origin;
 
-		$.post(currentURL, ultrarevSearch, function(data){
-			console.log(ultrarevSearch);
-		})
+		$.post(currentURL + '/' + ultrarevSearch, function(data){
+			console.log(data.length);
+			// $("#ultraTable").DataTable( {
+			// 	data:data
+			// });
+		});
 	});
 
 	$("#searchComp").on("click", function(){
