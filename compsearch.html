@@ -16,7 +16,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <!--===========================================================================================-->
 
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
 
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 
 
 
@@ -37,7 +39,7 @@
 			  <div class="panel-heading"><strong>Ultrarev Part Search</strong></div>
 			  	<div class="input-group">
 				  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-				  <input type="text" class="form-control" placeholder="Part Number" aria-describedby="basic-addon1" id="ultrarev-search-criteria" name="queryPart"><button type="button" class="btn btn-primary" id="ultrarev-search-btn">Search Part</button>
+				  <input type="text" class="form-control" placeholder="Part Number" aria-describedby="basic-addon1" id="ultrarevSearchCriteria" name="queryPart"><button type="button" class="btn btn-primary" id="ultrarev-search-btn">Search Part</button>
 				</div>
 
 			  <div class="panel-body">
@@ -55,12 +57,12 @@
 			</div>
 
 			<div class="panel panel-default">
-			  <div class="panel-heading"><strong>Competitor Search Results&nbsp</strong><button type="button" class="btn btn-primary">Search Competition</button></div>
+			  <div class="panel-heading"><strong>Competitor Search Results&nbsp</strong><button type="button" class="btn btn-primary" id="searchComp">Search Competition</button></div>
 			  <div class="panel-body">
-			    <table id="competitionPartTable" class="display" cellspacing="0" width="100%">
+			    <table id="compTable" class="display" cellspacing="0" width="100%">
 			    	<thead>
 			    		<tr>
-			    			<th>Item Id</th>
+			    			<th>Seller</th>
 			    			<th>Part Description</th>
 			    			<th>Start Price</th>
 			    		</tr>
@@ -78,7 +80,7 @@
 </html>
 <script type="text/javascript">
 	$("#ultrarev-search-btn").on("click", function(){
-		var ultrarevSearch = $('#ultrarev-search-criteria').val().trim();
+		var ultrarevSearch = $('#ultrarevSearchCriteria').val().trim();
 		alert(ultrarevSearch);
 
 		var currentURL = window.location.origin;
@@ -86,5 +88,22 @@
 		$.post(currentURL, ultrarevSearch, function(data){
 			console.log(ultrarevSearch);
 		})
+	});
+
+	$("#searchComp").on("click", function(){
+		$('#compTable').DataTable( {
+			data:[ //here's some dummy data to test the DataTable
+				[
+					'carud',
+					'Mann Filter 123',
+					'$23.99'
+				],
+				[
+					'partauth',
+					'Mann Filter 123',
+					'$23.49'
+				]
+			]
+		});
 	});
 </script>
