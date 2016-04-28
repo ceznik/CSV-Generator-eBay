@@ -21,6 +21,16 @@ var prKeys = require('./pr_keys.js');
 var app = express();
 var PORT = process.env.PORT || 8080;
 
+// LISTENER
+app.listen(PORT, function(){
+	console.log("App listening on PORT: " + PORT);
+});
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type:'application/vnd.api+json'}));
+
 // use for downloading files from File Exchange
 var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDownload';
 
@@ -31,53 +41,63 @@ var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDo
 // 	console.log('File Exchange Token: ' + data);
 // });
 
+
+//use for displaying query data to the console
 var table = new Table({
-	head: ['Ebay Item ID', 'Title', 'Price'],
+	head: ['Item ID', 'Title', 'Price'],
 	colWidths: [15, 80, 10]
 });
 
 
 
-var params = {
-  keywords: process.argv[3],
+app.get('/', function(req, res){
+	res.sendFile(path.join(__dirname + '/compsearch.html'));
+});
 
-  // add additional fields
-  outputSelector: ['AspectHistogram'],
 
-  paginationInput: {
-    entriesPerPage: 20
-  },
+app.post('/:name', function(req, res){
+	console.log(req.params.name);
+	var params = {
+	  keywords: req.params.name,
 
-  itemFilter: [
-    {name: 'Seller', value: 'ultrarevparts'},
-    {name: 'MaxPrice', value: '1000.00'}
-  ],
+	  // add additional fields
+	  outputSelector: ['AspectHistogram'],
 
-  primaryCategory: [
-    {name: 'categoryName', value: process.argv[2]}
-  ]
-};
+	  paginationInput: {
+	    entriesPerPage: 20
+	  },
 
-ebay.xmlRequest({
-    serviceName: 'Finding',
-    opType: 'findItemsByKeywords',
-    appId: prKeys.applicationKeys_PR.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
-    params: params,
-    parser: ebay.parseResponseJson    // (default)
-  },
-  // gets all the items together in a merged array
-  function itemsCallback(error, itemsResponse) {
-    if (error) throw error;
+	  itemFilter: [
+	    {name: 'Seller', value: 'ultrarevparts'}
+	  ],
 
-    var items = itemsResponse.searchResult.item;
+	  primaryCategory: [
+	    {name: 'categoryName', value: ''}
+	  ]
+	};
+	ebay.xmlRequest({
+	    serviceName: 'Finding',
+	    opType: 'findItemsByKeywords',
+	    appId: prKeys.applicationKeys_PR.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    params: params,
+	    parser: ebay.parseResponseJson    // (default)
+	  },
+	  // gets all the items together in a merged array
+	  function itemsCallback(error, itemsResponse) {
+	    if (error) throw error;
 
-    console.log('Found', items.length, 'items');
-    //console.log(items);
-    
-    for (var i = 0; i < items.length; i++) {
-      table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
-      //console.log(items[i].shippingInfo.shippingServiceCost);
-    }
-    console.log(colors.green(table.toString()));
-  }
-);
+	    var items = itemsResponse.searchResult.item;
+
+	    //console.log(colors.magenta.bold('Found', items.length, 'items'));
+	    //console.log(items);
+	    
+	    for (var i = 0; i < items.length; i++) {
+	      table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      //console.log(items[i].shippingInfo.shippingServiceCost);
+	    }
+	    //console.log(colors.green(table.toString()));
+	});
+	console.log(res.send(table));
+});
+
+

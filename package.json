@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/ceznik/CSV-Generator-eBay#readme",
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "cli-table": "^0.3.1",
+    "colors": "^1.1.2",
     "csv": "^0.4.6",
-    "ebay-api": "^1.13.0"
+    "ebay-api": "^1.13.0",
+    "express": "^4.13.4",
+    "path": "^0.12.7"
   }
 }
