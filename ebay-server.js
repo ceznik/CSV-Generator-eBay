@@ -19,12 +19,13 @@ var ebay = require('ebay-api');
 // This sets up the basic properties of our express server
 // =========================================================================================
 var app = express();
-var PORT = process.env.PORT;
+var PORT = process.env.PORT||3000;
 
 // LISTENER
 app.listen(PORT, function(){
-	console.log("App listening on PORT: " + PORT);
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
