@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var colors = require('colors');
 var ebay = require('ebay-api');
-var fs = require('fs');
+//var fs = require('fs');
 //var Table = require('cli-table');
 var prKeys = require('./pr_keys.js');
 
@@ -78,7 +78,7 @@ app.post('/:name', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: prKeys.applicationKeys_PR.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
@@ -124,7 +124,7 @@ app.post('/:name/comp', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: prKeys.applicationKeys_PR.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
