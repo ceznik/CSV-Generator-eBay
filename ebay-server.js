@@ -10,7 +10,7 @@ var path = require('path');
 var colors = require('colors');
 var ebay = require('ebay-api');
 var fs = require('fs');
-var Table = require('cli-table');
+//var Table = require('cli-table');
 var prKeys = require('./pr_keys.js');
 
 
@@ -43,10 +43,10 @@ var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDo
 
 
 //use for displaying query data to the console
-var table = new Table({
-	head: ['Item ID', 'Title', 'Price'],
-	colWidths: [15, 80, 10]
-});
+// var table = new Table({
+// 	head: ['Item ID', 'Title', 'Price'],
+// 	colWidths: [15, 80, 10]
+// });
 
 
 
@@ -64,7 +64,7 @@ app.post('/:name', function(req, res){
 	  outputSelector: ['AspectHistogram'],
 
 	  paginationInput: {
-	    entriesPerPage: 20
+	    entriesPerPage: 2000
 	  },
 
 	  itemFilter: [
@@ -87,17 +87,63 @@ app.post('/:name', function(req, res){
 	    if (error) throw error;
 
 	    var items = itemsResponse.searchResult.item;
-
+	    var resultArray = [];
 	    //console.log(colors.magenta.bold('Found', items.length, 'items'));
 	    //console.log(items);
 	    
 	    for (var i = 0; i < items.length; i++) {
-	      table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      resultArray.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
 	      //console.log(items[i].shippingInfo.shippingServiceCost);
 	    }
 	    //console.log(colors.green(table.toString()));
+		res.send(resultArray);
 	});
-	console.log(res.send(table));
 });
 
+app.post('/:name/comp', function(req, res){
+	console.log(req.params.name);
+	var params = {
+	  keywords: req.params.name,
+
+	  // add additional fields
+	  outputSelector: ['AspectHistogram'],
+
+	  paginationInput: {
+	    entriesPerPage: 200
+	  },
+
+	  itemFilter: [
+	    {name: 'ExcludeSeller', value: 'ultrarevparts'}
+	  ],
+
+	  primaryCategory: [
+	    {name: 'categoryName', value: ''}
+	  ]
+	};
+	ebay.xmlRequest({
+	    serviceName: 'Finding',
+	    opType: 'findItemsByKeywords',
+	    appId: prKeys.applicationKeys_PR.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    params: params,
+	    parser: ebay.parseResponseJson    // (default)
+	  },
+	  // gets all the items together in a merged array
+	  function itemsCallback(error, itemsResponse) {
+	    if (error) throw error;
+
+	    var items = itemsResponse.searchResult.item;
+	    var resultArray = [];
+	    //console.log(colors.magenta.bold('Found', items.length, 'items'));
+	    console.log(items);
+	    
+	    for (var i = 0; i < items.length; i++) {
+	      resultArray.push([items[i].sellerUserName, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      //console.log(items[i].shippingInfo.shippingServiceCost);
+	    }
+	    //console.log(colors.green(table.toString()));
+		res.send(resultArray);
+	});
+});
 
