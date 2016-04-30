@@ -19,7 +19,7 @@ var ebay = require('ebay-api');
 // This sets up the basic properties of our express server
 // =========================================================================================
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT;
 
 // LISTENER
 app.listen(PORT, function(){
