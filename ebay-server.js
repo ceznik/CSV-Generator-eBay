@@ -11,7 +11,7 @@ var colors = require('colors');
 var ebay = require('ebay-api');
 //var fs = require('fs');
 //var Table = require('cli-table');
-var prKeys = require('./pr_keys.js');
+//var prKeys = require('./pr_keys.js');
 
 
 // =========================================================================================
@@ -78,7 +78,7 @@ app.post('/:name', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
@@ -124,7 +124,7 @@ app.post('/:name/comp', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
