@@ -2,7 +2,7 @@
   "name": "csv-generator-ebay",
   "version": "1.0.0",
   "description": "generate csv format for eBay File Exchange",
-  "main": "index.js",
+  "main": "ebay-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
