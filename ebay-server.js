@@ -3,15 +3,11 @@
 // Various npm packages that we use to give our server useful functionality
 //=========================================================================================
 
-var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var colors = require('colors');
 var ebay = require('ebay-api');
-//var fs = require('fs');
-//var Table = require('cli-table');
-//var prKeys = require('./pr_keys.js');
+
 
 
 // =========================================================================================
@@ -57,7 +53,7 @@ app.get('/', function(req, res){
 
 
 app.post('/:name', function(req, res){
-	console.log(req.params.name);
+	//console.log(req.params.name);
 	var params = {
 	  keywords: req.params.name,
 
@@ -103,7 +99,7 @@ app.post('/:name', function(req, res){
 });
 
 app.post('/:name/comp', function(req, res){
-	console.log(req.params.name);
+	//console.log(req.params.name);
 	var params = {
 	  keywords: req.params.name,
 
@@ -136,7 +132,7 @@ app.post('/:name/comp', function(req, res){
 	    var items = itemsResponse.searchResult.item;
 	    var resultArray = [];
 	    //console.log(colors.magenta.bold('Found', items.length, 'items'));
-	    console.log(items);
+	    //console.log(items);
 	    
 	    for (var i = 0; i < items.length; i++) {
 	      resultArray.push([items[i].sellerUserName, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);

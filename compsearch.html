@@ -82,7 +82,7 @@
 	var ultrarevSearch;
 	$("#ultrarev-search-btn").on("click", function(){
 		ultrarevSearch = $('#ultrarevSearchCriteria').val().trim();
-		console.log(ultrarevSearch);
+		//console.log(ultrarevSearch);
 		//var table = $("#ultraTable").DataTable();
 		var currentURL = window.location.origin;
 
@@ -96,7 +96,7 @@
 	});
 	$("#searchComp").on("click", function(){
 		var currentURL = window.location.origin;
-		console.log(ultrarevSearch);
+		//console.log(ultrarevSearch);
 		$.post(currentURL +'/' + ultrarevSearch + '/comp', function(data){
 			$('#compTable').DataTable( {
 				data: data,
