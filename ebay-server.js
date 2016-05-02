@@ -1,3 +1,4 @@
+
 // ========================================================================================
 // DEPENDENCIES
 // Various npm packages that we use to give our server useful functionality
@@ -47,7 +48,9 @@ var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDo
 
 
 
-
+app.get('/', function(req, res){
+res.sendFile(path.join(__dirname + '/compsearch.html'));
+});
 
 
 app.post('/:name', function(req, res){
@@ -141,9 +144,7 @@ app.post('/:name/comp', function(req, res){
 		res.send(resultArray);
 	});
 	
-	app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname + '/compsearch.html'));
-	});
+
 
 });
 
