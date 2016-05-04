@@ -30,7 +30,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 // use for downloading files from File Exchange
-var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDownload';
+//var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDownload';
 
 
 //use for reading File Exchange Token
@@ -77,7 +77,7 @@ app.post('/:name', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: process.env.authToken, //'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
@@ -124,7 +124,7 @@ app.post('/:name/comp', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
