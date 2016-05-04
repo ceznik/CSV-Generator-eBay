@@ -77,7 +77,7 @@ app.post('/:name', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: process.env.authToken, //'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
