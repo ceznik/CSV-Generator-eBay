@@ -48,6 +48,9 @@ var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDo
 
 
 
+app.get('/', function(req, res){
+res.sendFile(path.join(__dirname + '/compsearch.html'));
+});
 
 
 app.post('/:name', function(req, res){
@@ -87,7 +90,7 @@ app.post('/:name', function(req, res){
 	    //console.log(items);
 	    
 	    for (var i = 0; i < items.length; i++) {
-	      resultArray.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      resultArray.push(['<a href="http://www.ebay.com/itm/' + items[i].itemId + '"' + ' target="_blank">' + items[i].itemId + '</a>', items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
 	      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
 	      //console.log(items[i].shippingInfo.shippingServiceCost);
 	    }
@@ -102,14 +105,15 @@ app.post('/:name/comp', function(req, res){
 	  keywords: req.params.name,
 
 	  // add additional fields
-	  outputSelector: ['AspectHistogram'],
+	  outputSelector: ['SellerInfo'],
 
 	  paginationInput: {
 	    entriesPerPage: 200
 	  },
 
 	  itemFilter: [
-	    {name: 'ExcludeSeller', value: 'ultrarevparts'}
+	    {name: 'ExcludeSeller', value: 'ultrarevparts'},
+	    {name: 'conditionId', value: 1000}
 	  ],
 
 	  primaryCategory: [
@@ -133,7 +137,7 @@ app.post('/:name/comp', function(req, res){
 	    //console.log(items);
 	    
 	    for (var i = 0; i < items.length; i++) {
-	      resultArray.push([items[i].sellerUserName, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+	      resultArray.push(['<a href="http://www.ebay.com/itm/' + items[i].itemId + '"' + ' target="_blank">' + items[i].sellerInfo.sellerUserName + '</a>', items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
 	      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
 	      //console.log(items[i].shippingInfo.shippingServiceCost);
 	    }
@@ -141,9 +145,6 @@ app.post('/:name/comp', function(req, res){
 		res.send(resultArray);
 	});
 	
-	app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname + '/compsearch.html'));
-	});
 
 });
 
