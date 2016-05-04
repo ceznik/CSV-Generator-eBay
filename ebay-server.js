@@ -48,10 +48,7 @@ var url = 'https://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeProgrammaticDo
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 0fb85c8e76ae0cf4204a63907222d1427dc1aa95
 app.get('/', function(req, res){
 res.sendFile(path.join(__dirname + '/compsearch.html'));
 });
@@ -149,10 +146,6 @@ app.post('/:name/comp', function(req, res){
 		res.send(resultArray);
 	});
 	
-<<<<<<< HEAD
-=======
-
->>>>>>> 0fb85c8e76ae0cf4204a63907222d1427dc1aa95
 
 });
 
