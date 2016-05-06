@@ -90,10 +90,12 @@ app.post('/:name', function(req, res){
 	    //console.log(colors.magenta.bold('Found', items.length, 'items'));
 	    //console.log(items);
 	    
-	    for (var i = 0; i < items.length; i++) {
-	      resultArray.push(['<a href="http://www.ebay.com/itm/' + items[i].itemId + '"' + ' target="_blank">' + items[i].itemId + '</a>', items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
-	      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
-	      //console.log(items[i].shippingInfo.shippingServiceCost);
+	    if(typeof items !== "undefined"){
+		    for (var i = 0; i < items.length; i++) {
+		      resultArray.push(['<a href="http://www.ebay.com/itm/' + items[i].itemId + '"' + ' target="_blank">' + items[i].itemId + '</a>', items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+		      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+		      //console.log(items[i].shippingInfo.shippingServiceCost);
+		    }	    	
 	    }
 	    //console.log(colors.green(table.toString()));
 		res.send(resultArray);
@@ -124,7 +126,7 @@ app.post('/:name/comp', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',
+	    appId: process.env.authToken,
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
@@ -145,7 +147,19 @@ app.post('/:name/comp', function(req, res){
 	    //console.log(colors.green(table.toString()));
 		res.send(resultArray);
 	});
-	
-
 });
+
+app.get('/mwatched', function(req, res){
+	ebay.xmlRequest({
+	  'serviceName': 'Merchandising',
+	  'opType': 'getMostWatchedItems',
+	  'appId': process.env.authToken,
+
+	},
+	function(error, data) {
+	  if (error) throw error;
+	  console.log("Getting most watched items");
+	  res.send(data);
+	});
+})
 
