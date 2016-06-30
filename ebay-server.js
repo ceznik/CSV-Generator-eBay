@@ -77,7 +77,7 @@ app.post('/:name', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',//process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
@@ -126,7 +126,7 @@ app.post('/:name/comp', function(req, res){
 	ebay.xmlRequest({
 	    serviceName: 'Finding',
 	    opType: 'findItemsByKeywords',
-	    appId: process.env.authToken,
+	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',  //process.env.authToken
 	    params: params,
 	    parser: ebay.parseResponseJson    // (default)
 	  },
@@ -149,17 +149,4 @@ app.post('/:name/comp', function(req, res){
 	});
 });
 
-app.get('/mwatched', function(req, res){
-	ebay.xmlRequest({
-	  'serviceName': 'Merchandising',
-	  'opType': 'getMostWatchedItems',
-	  'appId': process.env.authToken,
-
-	},
-	function(error, data) {
-	  if (error) throw error;
-	  console.log("Getting most watched items");
-	  res.send(data);
-	});
-})
 
