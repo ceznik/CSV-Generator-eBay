@@ -8,8 +8,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var ebay = require('ebay-api');
-
-
+var ebaytrading = require('ebay-trading-api');
+var Table = require('cli-table');
+var colors = require('colors');
 
 // =========================================================================================
 // EXPRESS CONFIGURATION
@@ -41,21 +42,74 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 
 //use for displaying query data to the console
-// var table = new Table({
-// 	head: ['Item ID', 'Title', 'Price'],
-// 	colWidths: [15, 80, 10]
-// });
+var table = new Table({
+	head: ['Item ID', 'Title', 'Price'],
+	colWidths: [15, 80, 10]
+});
 
 
 
 
 app.get('/', function(req, res){
-res.sendFile(path.join(__dirname + '/compsearch.html'));
+	res.sendFile(path.join(__dirname + '/compsearch.html'));
+});
+
+app.get('/epid', function(req, res){
+	res.sendFile(path.join(__dirname + '/epidsearch.html'));
+	
+});
+
+app.get('/epid/:product', function(req, res){
+	console.log(req.params.product);
+	var params = {
+	  keywords: req.params.product,
+
+	  // add additional fields
+	  outputSelector: ['AspectHistogram'],
+
+	  paginationInput: {
+	    entriesPerPage: 20
+	  }
+	};
+	ebay.xmlRequest({
+	    serviceName: 'Finding',
+	    opType: 'findItemsAdvanced',
+	    appId: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1',//process.env.authToken,      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+	    params: params,
+	    parser: ebay.parseResponseJson    // (default)
+	  },
+	  // gets all the items together in a merged array
+	  function itemsCallback(error, itemsResponse) {
+	    if (error) throw error;
+
+	    var items = itemsResponse.searchResult.item;
+		res.send(items);
+	});		
+});
+
+app.get('/itm/:itemid', function(req, res){
+	// Input parameters for GetItem api call.
+	// params.data is converted to xml format in the call method.
+	// http://developer.ebay.com/DevZone/xml/docs/Reference/ebay/GetItem.html
+	var params = {
+	  callname: 'GetItem',
+	  siteid: 0,
+	  data: {
+	    RequesterCredentials: {
+	      eBayAuthToken: 'ShawnSin-eBayPart-PRD-94d8cb72c-3a5252f1'
+	    },
+	    ItemID: req.params.itemid
+	  }
+	};
+	  
+	ebaytrading.call(params, function(err, result) {
+	  console.dir(result);
+	});
 });
 
 
 app.post('/:name', function(req, res){
-	//console.log(req.params.name);
+	console.log(req.params.name);
 	var params = {
 	  keywords: req.params.name,
 
@@ -87,17 +141,17 @@ app.post('/:name', function(req, res){
 
 	    var items = itemsResponse.searchResult.item;
 	    var resultArray = [];
-	    //console.log(colors.magenta.bold('Found', items.length, 'items'));
-	    //console.log(items);
+	    console.log(colors.magenta.bold('Found', items.length, 'items'));
+	    console.log(items);
 	    
 	    if(typeof items !== "undefined"){
 		    for (var i = 0; i < items.length; i++) {
 		      resultArray.push(['<a href="http://www.ebay.com/itm/' + items[i].itemId + '"' + ' target="_blank">' + items[i].itemId + '</a>', items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
-		      //table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
-		      //console.log(items[i].shippingInfo.shippingServiceCost);
+		      table.push([items[i].itemId, items[i].title, '$' + items[i].sellingStatus.convertedCurrentPrice.amount.toFixed(2)]);
+		      console.log(items[i].shippingInfo.shippingServiceCost);
 		    }	    	
 	    }
-	    //console.log(colors.green(table.toString()));
+	    console.log(colors.green(table.toString()));
 		res.send(resultArray);
 	});
 });

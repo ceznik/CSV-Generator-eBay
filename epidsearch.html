@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ePID Search</title>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- DataTables CDN -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<div class="page-header">
+  <h1>eBay Catalog Search <small>ePID</small></h1>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+ </div><!-- /.row -->
+
+
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Results</h3>
+  </div>
+  <div class="panel-body">
+    <table id="epidresults" class="display" cellspacing="0" width="100%">
+    	<thead>
+    		<tr>
+    			<th>Product No</th>
+    			<th>Stock Photo</th>
+    			<th>Product Title</th>
+    			<th>EPID</th>
+    		</tr>
+    	</thead>
+    	<tfoot>
+    		<tr>
+    			<th>Product No</th>
+    			<th>Stock Photo</th>
+    			<th>Product Title</th>
+    			<th>EPID</th>
+    		</tr>
+    	</tfoot>
+    	<tbody>
+    		<tr>
+    			<td>DP42088R</td>
+    			<td><img src="http://i.ebayimg.com/00/s/MTUwMFgxNDUw/z/3vMAAOSwTglYk0lr/$_6.JPG?set_id=89040003C1"></td>
+    			<td>Disc Brake Pad-Yellowstuff Street And Track Front EBC Brake DP42088R</td>
+    			<td>115306261</td>
+    		</tr>
+
+    	</tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
